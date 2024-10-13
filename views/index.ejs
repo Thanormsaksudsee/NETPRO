@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page - Fantasy Space</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: radial-gradient(circle, rgba(18,24,56,1) 0%, rgba(14,18,35,1) 100%);
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .container {
+            text-align: center;
+            z-index: 2;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #00fff3;
+            text-shadow: 2px 2px 20px rgba(0, 255, 243, 0.7);
+            margin-bottom: 30px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            margin: 20px 0;
+        }
+
+        /* Button Styles */
+        button {
+            font-size: 1.5rem;
+            padding: 15px 30px;
+            color: #fff;
+            background: linear-gradient(90deg, rgba(0,255,247,1) 0%, rgba(0,160,255,1) 100%);
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 4px 15px rgba(0, 255, 243, 0.4);
+            transition: all 0.4s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, rgba(255,0,255,1) 0%, rgba(160,0,255,1) 100%);
+            box-shadow: 0px 4px 20px rgba(255, 0, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        /* Rocket Icon */
+        .rocket {
+            position: absolute;
+            width: 100px;
+            animation: moveRocket 10s ease-in-out infinite;
+        }
+
+        @keyframes moveRocket {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(50vw, 20vh); }
+            50% { transform: translate(20vw, 70vh); }
+            75% { transform: translate(-50vw, -20vh); }
+            100% { transform: translate(0, 0); }
+        }
+
+        .meteor {
+            position: absolute;
+            width: 100px;
+            animation: moveMeteor 10s ease-in-out infinite;
+        }
+
+        @keyframes moveMeteor {
+            100% { transform: translate(255, 255); }
+            75% { transform: translate(-50vw, -20vh); }
+            50% { transform: translate(-20vw, -70vh); }
+            25% { transform: translate(-50vw, -20vh); }
+            0% { transform: translate(255, 255); }
+        }
+
+        /* Text Under Rocket */
+        .rocket-text {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 1.2rem;
+            color: #00fff3;
+            text-shadow: 2px 2px 10px rgba(0, 255, 243, 0.7);
+        }
+
+        /* Animation for background stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: transparent url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat;
+            z-index: 1;
+            animation: moveStars 100s linear infinite;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
+        }
+
+        /* Glowing particles for extra fantasy effect */
+        .glowing-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: transparent url('https://www.script-tutorials.com/demos/360/images/glow.png') repeat;
+            z-index: 1;
+            animation: glowMove 100s linear infinite;
+        }
+
+        @keyframes glowMove {
+            from { background-position: 0 0; }
+            to { background-position: 5000px 10000px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Moving Stars -->
+    <div class="stars"></div>
+
+    <!-- Glowing Particles -->
+    <div class="glowing-particles"></div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <h1>Welcome to the SNMP </h1>
+        <ul>
+            <li><a href="http://localhost:1000"><button>Go to GET</button></a></li>
+            <li><a href="http://localhost:2000"><button>Go to BULK</button></a></li>
+            <li><a href="http://localhost:3000"><button>Go to SET</button></a></li>
+            <li><a href="http://localhost:4000"><button>Go to TRAP</button></a></li>
+            <li><a href="http://localhost:5000"><button>Go to LOG</button></a></li>
+        </ul>
+    </div>
+
+    <!-- Rocket Floating Animation -->
+    <img src="https://static.vecteezy.com/system/resources/previews/022/996/345/non_2x/3d-space-rocket-render-with-transparent-background-free-png.png" alt="Rocket" class="rocket">
+    <img src="https://png.pngtree.com/png-clipart/20231020/original/pngtree-meteor-fall-with-fire-png-image_13382941.png" alt="Meteor" class="meteor">
+    <!-- Text Under Rocket -->
+    <div class="rocket-text">Teach.By Thanormsak[BIG]</div>
+    
+</body>
+</html>

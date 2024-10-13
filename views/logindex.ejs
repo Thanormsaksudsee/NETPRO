@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #c5c6c7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Background stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: black url('https://www.script-tutorials.com/demos/360/images/stars.png') repeat;
+            animation: moveStars 100s linear infinite;
+            z-index: -1;
+        }
+
+        @keyframes moveStars {
+            from { background-position: 0 0; }
+            to { background-position: -10000px 5000px; }
+        }
+
+        /* Table and text styling */
+        h1 {
+            color: #66fcf1;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(0, 255, 243, 0.7);
+        }
+
+        button {
+            font-size: 1.2rem;
+            padding: 10px 25px;
+            color: #fff;
+            background: linear-gradient(90deg, rgba(0,255,247,1) 0%, rgba(0,160,255,1) 100%);
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 4px 15px rgba(0, 255, 243, 0.4);
+            transition: all 0.4s ease-in-out;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, rgba(255,0,255,1) 0%, rgba(160,0,255,1) 100%);
+            box-shadow: 0px 4px 20px rgba(255, 0, 255, 0.6);
+            transform: scale(1.05);
+        }
+
+        table {
+            width: 90%;
+            max-height: 70vh;
+            border-collapse: collapse;
+            background-color: rgba(11, 12, 16, 0.5); /* Make table background semi-transparent */
+            border: 1px solid #45a29e;
+            margin-top: 20px;
+            overflow-y: scroll;
+            display: block;
+        }
+
+        th, td {
+            padding: 15px;
+            border: 1px solid #45a29e;
+            text-align: center;
+        }
+
+        th {
+            background-color: rgba(31, 40, 51, 0.8); /* Semi-transparent header */
+            color: #66fcf1;
+        }
+
+        td {
+            color: #c5c6c7;
+        }
+
+        #countdown {
+            color: #66fcf1;
+            font-size: 1.5rem;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            margin-top: 20px;
+        }
+
+        .button-container ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .button-container li {
+            margin: 10px 0;
+        }
+        .rocket {
+       width: 160px;
+         height: 160px;
+        object-fit: cover;
+        }
+
+        .button-container li a {
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        // Countdown logic
+        let countdownTime = 10;
+
+        function updateCountdown() {
+            if (countdownTime > 0) {
+                document.getElementById('countdown').innerText = `Refreshing in ${countdownTime} seconds`;
+                countdownTime--;
+            } else {
+                location.reload(); // Refresh the page after countdown
+            }
+        }
+
+        setInterval(updateCountdown, 1000); // Update countdown every 1 second
+    </script>
+    <meta http-equiv="refresh" content="10"> <!-- Refresh the page every 10 seconds -->
+</head>
+<body>
+    <!-- Moving stars background -->
+    <div class="stars"></div>
+
+    <h1>Traffic Data Monitoring</h1>
+
+    <div id="countdown">Refreshing in 10 seconds</div>
+
+    <!-- Table displaying Inbound and Outbound Traffic data -->
+    <table>
+        <thead>
+            <tr>
+                <th>Timestamp</th>
+                <th>Inbound Traffic</th>
+                <th>Outbound Traffic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% trafficData.timestamps.forEach((timestamp, index) => { %>
+                <tr>
+                    <td><%= new Date(timestamp).toLocaleString() %></td>
+                    <td><%= trafficData.inbound[index] %> bytes</td>
+                    <td><%= trafficData.outbound[index] %> bytes</td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t39.30808-1/328029842_1645808172535047_2633079686754633465_n.jpg?stp=c0.256.1536.1536a_dst-jpg_s200x200&_nc_cat=107&ccb=1-7&_nc_sid=0ecb9b&_nc_ohc=AE57_BGsOloQ7kNvgEoO21U&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=AbjJVTsMmEsbRdzRIsXbNvd&oh=00_AYB9qahfyqwfGxmaTRzVrzEZ4sSHKRuUgiPw2vzjtPtJJw&oe=6710C770" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/462553250_2226331334420423_3721879213730568197_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=9f807c&_nc_ohc=ctzEyG0oImAQ7kNvgHYxRjE&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=A5ua8kk29dQkFZ5hwD4BR3W&oh=03_Q7cD1QG0wNn6jLEWS18vllHZLQaAbV96arBg8Xzg-rmv9Lp_Ug&oe=673247F7" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.6435-9/50914169_1183101131851825_223981251701243904_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=53a332&_nc_ohc=exmmiz2wi_oQ7kNvgF4wqPg&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=A05XYa5h64g0EZgYlgRZCcc&oh=00_AYDUPErCXUQlLdBJeHYJp3d_YGUxfIA2eoE2XOb-8WhwSA&oe=673266F9" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/462236649_905953168117232_2552023867381673977_n.png?_nc_cat=101&ccb=1-7&_nc_sid=9f807c&_nc_ohc=wTvvs9MoLCMQ7kNvgF1D0XG&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=A4hBJdfKmvA3tZUO20uDMRK&oh=03_Q7cD1QG3JVhVp4l_yx8hs8ImhZwvd39MB0vwLIp0e_58VhLxhA&oe=67326E32" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.6435-9/169922535_2619234148375559_6681732645602815102_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=7b2446&_nc_ohc=T1cijSalFgwQ7kNvgEPHCmm&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=A21txeZXevCKaGEWtj9Z-7d&oh=00_AYCJZe7PLmBKj0Z0sYKm4Pu7GewIQ4z3dMj9HvzLZ2RL3A&oe=673251DF" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t1.15752-9/462537256_545307594656945_1743526759230364419_n.png?_nc_cat=106&ccb=1-7&_nc_sid=9f807c&_nc_ohc=A1-A6NCSSSgQ7kNvgHPiO0x&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=AO2gNDva6-E2SilXoic4NcR&oh=03_Q7cD1QHPkJyd1bLuTyonKM4UHwV0ETXklIeAisQHGdkCgsSJiA&oe=67325820" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t39.30808-6/404206246_1940193393049542_4264396264872876667_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_ohc=LbpZVx_kcfMQ7kNvgHmDOaS&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=AF_w_7sLgEtfe_waaRjuLG3&oh=00_AYCTPH_XvRZN3mVzBvLXo3bi7jU9xUaqxVOhOcrGAayTvw&oe=6710ABE7" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t39.30808-6/384449928_1910590096009872_8503568477602386683_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=f727a1&_nc_ohc=NQK1yLVUhCkQ7kNvgH0n5ya&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=AqC2AgL_eS6k5jwzt-sauXj&oh=00_AYBHh8mWQep2HPKVZqdVJclOqm5BxsaUz1TK5YGYPY0egg&oe=6710C7AF" alt="Rocket" class="rocket"></td>
+                    <td> <img src="https://scontent.fbkk30-1.fna.fbcdn.net/v/t39.30808-6/339098170_567421958731969_336176675753954619_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=833d8c&_nc_ohc=eQXkbjH4TvkQ7kNvgHcMQXi&_nc_ht=scontent.fbkk30-1.fna&_nc_gid=AvWYUYbxkDv-UGKsu-6p-94&oh=00_AYAKSZLecyCqiSwIDbCeIlpLgfMQrh-ce10-3zSdqAZeSQ&oe=6710C5FF" alt="Rocket" class="rocket"></td>
+
+
+                </tr>
+            <% }) %>
+        </tbody>
+    </table>
+
+    <!-- Button links -->
+    <div class="button-container">
+        <ul>
+            <li><a href="http://localhost:8080"><button>Go to HOMEPAGE</button></a></li>
+            <li><a href="http://localhost:2000"><button>Go to BULK</button></a></li>
+            <li><a href="http://localhost:3000"><button>Go to SET</button></a></li>
+            <li><a href="http://localhost:4000"><button>Go to TRAP</button></a></li>
+            <li><a href="http://localhost:1000"><button>Go to GET</button></a></li>
+        </ul>
+    </div>
+</body>
+</html>

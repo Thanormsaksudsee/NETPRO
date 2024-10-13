@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SNMP GET Data</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a1a1d;
+            color: #c5c6c7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            color: #66fcf1;
+            font-size: 2.5rem;
+            text-align: center;
+            text-shadow: 2px 2px 20px rgba(0, 255, 243, 0.7);
+        }
+
+        p {
+            color: #66fcf1;
+            font-size: 1.2rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #0b0c10;
+            border: 1px solid #45a29e;
+            box-shadow: 0px 4px 15px rgba(0, 255, 243, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 15px;
+            border-bottom: 1px solid #45a29e;
+        }
+
+        th {
+            background-color: #1f2833;
+            color: #66fcf1;
+            font-size: 1.2rem;
+        }
+
+        td {
+            color: #c5c6c7;
+            font-size: 1rem;
+        }
+
+        /* Button Styling */
+        button {
+            font-size: 1.2rem;
+            padding: 12px 24px;
+            color: #fff;
+            background: linear-gradient(90deg, rgba(0,255,247,1) 0%, rgba(0,160,255,1) 100%);
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0px 4px 15px rgba(0, 255, 243, 0.4);
+            transition: all 0.4s ease-in-out;
+            margin: 10px 0;
+        }
+
+        button:hover {
+            background: linear-gradient(90deg, rgba(255,0,255,1) 0%, rgba(160,0,255,1) 100%);
+            box-shadow: 0px 4px 20px rgba(255, 0, 255, 0.6);
+            transform: scale(1.1);
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p>GET</p>
+        <h1>SNMP GET Data</h1>
+
+        <!-- SNMP Data Table -->
+        <table>
+            <thead>
+                <tr>
+                    <th>OID</th>
+                    <th>OID Name</th>
+                    <th>Value</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% const oidNames = {
+                    '1.3.6.1.2.1.1.5.0': 'System Name',
+                    '1.3.6.1.2.1.2.1.0': 'Amount of Interface',
+                    '1.3.6.1.2.1.1.3.0': 'System Uptime',
+                    '1.3.6.1.2.1.2.2.1.10': 'Inbound Octets',
+                    '1.3.6.1.2.1.2.2.1.16': 'Outbound Octets',
+                    '1.3.6.1.4.1.2021.4.6.0': 'Available Memory',
+                    '1.3.6.1.4.1.2021.4.5.0': 'Total Memory',
+                    '1.3.6.1.4.1.9.2.1.56.0': 'CPU Load',
+                    '1.3.6.1.2.1.31.1.1.1.1.1': 'First Interface',
+                    '1.3.6.1.2.1.1.1.0': 'Band'
+                }; %>
+                <% Object.entries(data).forEach(([oid, value]) => { %>
+                <tr>
+                    <td><%= oid %></td>
+                    <td><%= oidNames[oid] || 'Unknown OID' %></td>
+                    <td><%= value %></td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+
+        <!-- Navigation Buttons -->
+        <div class="container">
+            <ul>
+                <li><a href="http://localhost:8080"><button>Go to HOMEPAGE</button></a></li>
+                <li><a href="http://localhost:2000"><button>Go to BULK</button></a></li>
+                <li><a href="http://localhost:3000"><button>Go to SET</button></a></li>
+                <li><a href="http://localhost:4000"><button>Go to TRAP</button></a></li>
+                <li><a href="http://localhost:5000"><button>Go to LOG</button></a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
